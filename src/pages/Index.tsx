@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -12,8 +11,6 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
 const Index = () => {
-  const [selectedPlan] = useState<string>("");
-
   return (
     <div className="min-h-screen bg-black from-gray-900 via-gray-800 to-gray-700">
       <SEO
@@ -22,6 +19,7 @@ const Index = () => {
         keywords="web development, website design, custom websites, responsive web design, UI/UX design, SEO optimization, web maintenance, landing pages, React development, modern websites, professional web developer"
         canonicalUrl="https://www.sitecraftersz.co/"
       />
+
       <Header />
       <Hero />
       <Services />
@@ -30,11 +28,10 @@ const Index = () => {
       {/* <Pricing setSelectedPlan={setSelectedPlan} /> */}
       <Testimonials />
       <FAQ />
-      <Contact selectedPlan={selectedPlan} />
+      <Contact selectedPlan="" />
       <Footer />
     </div>
   );
 };
 
 export default Index;
-

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface SEOProps {
     title?: string;
@@ -11,66 +11,82 @@ interface SEOProps {
 }
 
 const SEO = ({
-    title = 'SiteCrafters - Professional Web Development & Design Services',
-    description = 'Expert web development agency specializing in custom websites, responsive design, UI/UX, SEO optimization, and web maintenance. Transform your digital presence with SiteCrafters.',
-    keywords = 'web development, website design, custom websites, responsive web design, UI/UX design, SEO optimization, web maintenance',
-    canonicalUrl = 'https://www.sitecraftersz.co/',
-    ogImage = 'https://www.sitecraftersz.co/siteCraftersLogo.jpg',
-    ogType = 'website',
+    title = "SiteCrafters - Custom Web Development & Digital Solutions",
+    description = "We build custom websites and digital experiences designed for performance, clarity, and business growth.",
+    keywords = "web development, custom websites, UI design, responsive websites, SEO, web agency",
+    canonicalUrl = "https://sitecraftersz.co/",
+    ogImage = "https://sitecraftersz.co/siteCraftersLogo.jpg",
+    ogType = "website",
     noindex = false,
 }: SEOProps) => {
     useEffect(() => {
-        // Update page title
         document.title = title;
 
-        // Update or create meta tags
-        const updateMetaTag = (name: string, content: string, property?: boolean) => {
-            const attribute = property ? 'property' : 'name';
-            let element = document.querySelector(`meta[${attribute}="${name}"]`);
+        const upsertMeta = (
+            selector: string,
+            attr: "name" | "property",
+            value: string
+        ) => {
+            let element = document.querySelector<HTMLMetaElement>(selector);
 
             if (!element) {
-                element = document.createElement('meta');
-                element.setAttribute(attribute, name);
+                element = document.createElement("meta");
+                element.setAttribute(attr, selector.split("=").pop() || "");
                 document.head.appendChild(element);
             }
 
-            element.setAttribute('content', content);
+            element.setAttribute("content", value);
         };
 
-        // Standard meta tags
-        updateMetaTag('description', description);
-        updateMetaTag('keywords', keywords);
+        // Standard SEO
+        upsertMeta(`meta[name="description"]`, "name", description);
+        upsertMeta(`meta[name="keywords"]`, "name", keywords);
 
         // Robots
-        if (noindex) {
-            updateMetaTag('robots', 'noindex, nofollow');
-        } else {
-            updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-        }
+        upsertMeta(
+            `meta[name="robots"]`,
+            "name",
+            noindex
+                ? "noindex, nofollow"
+                : "index, follow, max-image-preview:large"
+        );
 
-        // Open Graph tags
-        updateMetaTag('og:title', title, true);
-        updateMetaTag('og:description', description, true);
-        updateMetaTag('og:type', ogType, true);
-        updateMetaTag('og:url', canonicalUrl, true);
-        updateMetaTag('og:image', ogImage, true);
-        updateMetaTag('og:site_name', 'SiteCrafters', true);
+        // OpenGraph (IMPORTANT: property-based)
+        upsertMeta(`meta[property="og:title"]`, "property", title);
+        upsertMeta(`meta[property="og:description"]`, "property", description);
+        upsertMeta(`meta[property="og:type"]`, "property", ogType);
+        upsertMeta(`meta[property="og:url"]`, "property", canonicalUrl);
+        upsertMeta(`meta[property="og:image"]`, "property", ogImage);
+        upsertMeta(`meta[property="og:site_name"]`, "property", "SiteCrafters");
 
-        // Twitter tags
-        updateMetaTag('twitter:card', 'summary_large_image');
-        updateMetaTag('twitter:title', title);
-        updateMetaTag('twitter:description', description);
-        updateMetaTag('twitter:image', ogImage);
+        // Twitter
+        upsertMeta(`meta[name="twitter:card"]`, "name", "summary_large_image");
+        upsertMeta(`meta[name="twitter:title"]`, "name", title);
+        upsertMeta(`meta[name="twitter:description"]`, "name", description);
+        upsertMeta(`meta[name="twitter:image"]`, "name", ogImage);
+        upsertMeta(`meta[name="twitter:site"]`, "name", "@sitecrafters");
 
-        // Canonical URL
-        let canonical = document.querySelector('link[rel="canonical"]');
+        // Canonical
+        let canonical = document.querySelector<HTMLLinkElement>(
+            'link[rel="canonical"]'
+        );
+
         if (!canonical) {
-            canonical = document.createElement('link');
-            canonical.setAttribute('rel', 'canonical');
+            canonical = document.createElement("link");
+            canonical.setAttribute("rel", "canonical");
             document.head.appendChild(canonical);
         }
-        canonical.setAttribute('href', canonicalUrl);
-    }, [title, description, keywords, canonicalUrl, ogImage, ogType, noindex]);
+
+        canonical.setAttribute("href", canonicalUrl);
+    }, [
+        title,
+        description,
+        keywords,
+        canonicalUrl,
+        ogImage,
+        ogType,
+        noindex,
+    ]);
 
     return null;
 };

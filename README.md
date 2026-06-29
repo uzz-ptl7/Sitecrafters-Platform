@@ -1,53 +1,101 @@
-# Welcome to SiteCrafters
+# 🚀 Welcome to SiteCrafters
 
 <div align="center">
   <img src="./src/assets/siteCraftersLogo.png" width="320px" height="320px" />
   <img src="./src/assets/portfolio/sitecrafters.png" width="680px" height="680px" />
 </div>
 
-# Project info
+---
 
-**Live Website URL**: https://sitecraftersz.netlify.app/
+## 🌐 Live Website
 
-# How to view this project locally
+👉 https://sitecraftersltd.com/
 
-To run this project on your local machine and see the website in action, follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone https://github.com/Sitecraftersofficial/SitecraftersPortfolio.git
+## 📌 About SiteCrafters
 
-# Step 2: Navigate to the project directory.
-cd SitecraftersPortfolio
+**SiteCrafters** is a modern web development studio focused on building high-performance, visually refined, and conversion-driven websites.
 
-# Step 3: Install dependencies if the node_modules folder is missing.
-npm install
+We specialize in creating digital experiences that help businesses establish a strong online presence, improve credibility, and convert visitors into customers.
 
-# Step 4: Start the development server.
-npm run dev
-````
-### Step 5: After running npm run dev, click on the localhost link provided:
-Eg: http://localhost:5173/
+Our focus is on:
 
+- Clean, modern UI/UX design
+- Fast and responsive web applications
+- SEO-optimized structure
+- Scalable and maintainable frontend systems
+- Business-focused digital solutions
 
+We aim to combine **design precision + technical performance + business strategy** into every project we build.
 
-# Technologies Used:
+---
 
--Vite
+## 🧩 About This Project
 
--TypeScript
+This is the official **SiteCrafters marketing website**, built to showcase:
 
--React
+- Our services
+- Portfolio of completed work
+- Client testimonials
+- Company identity and branding
+- Contact and lead generation system
 
--shadcn-ui
+It is designed as a **fully responsive, production-grade agency website** with a focus on performance, accessibility, and modern UI patterns.
 
--Tailwind CSS
+---
 
+## ⚙️ Technologies Used
 
+- ⚡ Vite
+- 🟦 TypeScript
+- ⚛️ React
+- 🎨 Tailwind CSS
+- 🧩 shadcn/ui
+- 🔥 React Router
+- 🧠 React Hook Form
+- 🗄️ Supabase
 
-# Deployment:
-The project is deployed and live on Netlify:
+---
 
-https://sitecraftersz.netlify.app/
+## 🚀 Features
 
-© 2025 SiteCrafters — Crafted with 💻 + ❤️ in Kigali, Rwanda.
+- Fully responsive design (mobile → desktop)
+- Smooth routing with React Router
+- Dynamic portfolio system (JSON-driven projects)
+- Testimonial submission + database integration
+- SEO optimized pages (meta + Open Graph)
+- Modern animated UI sections
+- Reusable component structure
+- Performance-focused architecture
+
+---
+
+## 🌍 Deployment
+
+The project is deployed on **Netlify**:
+
+👉 https://sitecraftersltd.com/
+
+---
+
+## 🧠 Purpose
+
+This project serves as:
+
+- A real-world agency showcase website
+- A lead generation platform
+- A portfolio of development capability
+- A foundation for scaling future client projects
+
+---
+
+## 📍 Location
+
+Crafted with 💻 + ❤️ in **Kigali, Rwanda**
+
+---
+
+## © License
+
+© 2026 SiteCrafters. All rights reserved.

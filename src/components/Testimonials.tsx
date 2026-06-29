@@ -35,6 +35,7 @@ const renderStars = (rating: number) => (
     {[1, 2, 3, 4, 5].map((i) => {
       const isFull = rating >= i;
       const isHalf = !isFull && rating >= i - 0.5;
+
       if (isFull) {
         return <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />;
       } else if (isHalf) {
@@ -58,6 +59,7 @@ const Testimonials = () => {
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -66,11 +68,7 @@ const Testimonials = () => {
   } = useForm<FormInputs>();
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isModalOpen ? "hidden" : "";
   }, [isModalOpen]);
 
   const fetchTestimonials = async () => {
@@ -116,7 +114,10 @@ const Testimonials = () => {
 
     try {
       const formspreeData = new FormData();
-      Object.entries(formData).forEach(([k, v]) => formspreeData.append(k, String(v || "")));
+      Object.entries(formData).forEach(([k, v]) =>
+        formspreeData.append(k, String(v || ""))
+      );
+
       await fetch("https://formspree.io/f/xblyvzon", {
         method: "POST",
         headers: { Accept: "application/json" },
@@ -134,6 +135,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="px-4 py-20 bg-slate-800/30 overflow-x-hidden">
       <div className="mx-auto w-full max-w-6xl space-y-10">
+
         <div className="text-center space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
             What Our{" "}
@@ -141,12 +143,15 @@ const Testimonials = () => {
               Clients Say
             </span>
           </h2>
+
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             Real people, real results, real success stories. Hear from those who’ve worked with us.
           </p>
+
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-full sm:w-auto mt-4 px-6 py-2 duration-700 bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 text-white hover:from-purple-700 hover:to-purple-400 hover:text-black rounded font-medium transition"
+            aria-label="Open testimonial submission form"
           >
             Submit Your Testimonial
           </button>
@@ -166,24 +171,31 @@ const Testimonials = () => {
           <div className="w-full">
             <Card className="w-full bg-slate-700/10 border border-slate-600/20 hover:-translate-y-2 group overflow-hidden shadow-lg transition-all duration-700 ease-in-out">
               <CardContent className="p-6 sm:p-8 space-y-6 text-slate-300 break-words hyphens-auto">
+
                 <div className="flex items-center gap-3">
                   {renderStars(testimonialList[visibleIndex].rating)}
+
                   {testimonialList[visibleIndex].verified && (
                     <span className="text-xs bg-green-600 text-white px-2 py-0.5 rounded flex items-center gap-1">
                       <ShieldCheck size={12} /> Verified
                     </span>
                   )}
                 </div>
+
                 <blockquote className="leading-relaxed text-base sm:text-lg md:text-xl">
                   “{testimonialList[visibleIndex].content}”
                 </blockquote>
+
                 <div className="border-t border-slate-600/20 pt-4">
                   <div className="text-center md:text-left mb-3">
-                    <h4 className="font-semibold text-white text-lg">{testimonialList[visibleIndex].name}</h4>
+                    <h4 className="font-semibold text-white text-lg">
+                      {testimonialList[visibleIndex].name}
+                    </h4>
                     <p className="text-slate-400 text-sm">
                       {testimonialList[visibleIndex].role}, {testimonialList[visibleIndex].company}
                     </p>
                   </div>
+
                   <div className="text-slate-400 text-sm space-y-1">
                     {testimonialList[visibleIndex].website && (
                       <p>
@@ -198,6 +210,7 @@ const Testimonials = () => {
                         </a>
                       </p>
                     )}
+
                     <p>
                       <Mail className="inline-block w-4 h-4 mr-2" />
                       <a
@@ -207,6 +220,7 @@ const Testimonials = () => {
                         {testimonialList[visibleIndex].email}
                       </a>
                     </p>
+
                     <p>
                       <PhoneCall className="inline-block w-4 h-4 mr-2" />
                       <a
@@ -238,9 +252,11 @@ const Testimonials = () => {
               >
                 <X size={24} />
               </button>
+
               <h3 id="modal-title" className="text-2xl font-semibold text-white mb-4 text-center">
                 Submit Your Testimonial
               </h3>
+
               <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name", { required: true })} disabled={isSubmitting} className="w-full p-2 rounded bg-slate-800/30 text-white" placeholder="Your Name" />
                 <input {...register("role", { required: true })} disabled={isSubmitting} className="w-full p-2 rounded bg-slate-800/30 text-white" placeholder="Your Role" />
@@ -257,6 +273,7 @@ const Testimonials = () => {
             </div>
           </div>
         )}
+
       </div>
     </section>
   );

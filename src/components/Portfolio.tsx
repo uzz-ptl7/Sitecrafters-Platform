@@ -31,7 +31,6 @@ import generalsupermarketimage from "../assets/portfolio/supermarket.png";
 import yogastudiosimage from "../assets/portfolio/yoga.png";
 import plumbingtechnicianimage from "../assets/portfolio/plumbing.png";
 
-// Map JSON filenames to imported images
 const imageMap: Record<string, string> = {
   "silvagym.png": silvagymimage,
   "webwizards.png": webwizardsimage,
@@ -61,17 +60,15 @@ const imageMap: Record<string, string> = {
   "plumbing.png": plumbingtechnicianimage,
 };
 
-// Map images to projects
 const projects = projectsData.map((p) => ({
   ...p,
   image: imageMap[p.image],
 }));
 
-// Choose 6 specific projects to display
 const selectedProjects = [
-  projects.find(p => p.title === "Brotherhood Travel Tours")!,
-  projects.find(p => p.title === "Personal Trainer")!,
-  projects.find(p => p.title === "Auram Jewelry")!,
+  projects.find((p) => p.title === "Brotherhood Travel Tours")!,
+  projects.find((p) => p.title === "Personal Trainer")!,
+  projects.find((p) => p.title === "Auram Jewelry")!,
 ];
 
 const Portfolio = () => {
@@ -80,25 +77,27 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="py-20 px-4">
       <div className="container mx-auto">
-        {/* Heading */}
+
+        {/* HEADER */}
         <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our{" "}
             <span className="bg-gradient-to-r from-cyan-600 to-purple-400 bg-clip-text text-transparent">
-              Portfolio
+              Work
             </span>
           </h2>
+
           <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-6">
-            Here’s a quick preview of some of our projects. Check out the full portfolio for more!
+            A selection of recent projects built with performance, design, and business goals in mind.
           </p>
         </div>
 
-        {/* Projects Grid (3 specific projects) */}
+        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {selectedProjects.map((project, index) => (
             <Card
               key={index}
-              className="bg-slate-800/50 border-slate-700/50 overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 group"
+              className="bg-slate-800/50 border-slate-700/50 overflow-hidden hover:-translate-y-2 transition-all duration-300 group"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -106,29 +105,45 @@ const Portfolio = () => {
                   alt={project.title}
                   className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-cyan-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+
+                {/* HOVER OVERLAY FIXED */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="w-full flex justify-center"
                   >
                     <Button
                       size="sm"
-                      className="bg-gradient-to-r from-cyan-600 to-purple-500 duration-500 hover:text-black hover:from-purple-500 hover:to-cyan-600 text-white border-0"
+                      className="
+                        bg-gradient-to-r from-cyan-500 to-purple-500
+                        text-white
+                        hover:from-purple-500 hover:to-cyan-500
+                        hover:text-white
+                        opacity-100
+                        font-medium
+                        shadow-lg
+                      "
                     >
                       <ExternalLink className="w-4 h-4 mr-1" />
-                      Live
+                      View Live
                     </Button>
                   </a>
+
                 </div>
               </div>
+
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {project.title}
                 </h3>
+
                 <p className="text-slate-300 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
+
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
                     <span
@@ -144,19 +159,29 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* See More Button */}
+        {/* CTA */}
         <div className="flex justify-center mt-10">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-purple-400 via-purple-500 to-cyan-600 duration-500 hover:from-purple-700 hover:to-purple-400 hover:text-black text-white border-0"
+            className="
+              w-full md:w-auto
+              px-10
+              bg-gradient-to-r from-purple-500 to-cyan-500
+              text-white
+              hover:from-cyan-500 hover:to-purple-500
+              hover:text-white
+              transition-all
+              duration-300
+            "
             onClick={() => {
               navigate("/portfolio");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            See More
+            View Full Portfolio
           </Button>
         </div>
+
       </div>
     </section>
   );
