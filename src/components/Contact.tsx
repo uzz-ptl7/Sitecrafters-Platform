@@ -60,7 +60,7 @@ const Contact: React.FC<ContactProps> = ({ selectedPlan }) => {
     form.append("selectedPlan", selectedPlan);
 
     try {
-      const response = await fetch("https://formspree.io/f/mnnvokkw", {
+      const response = await fetch("https://formspree.io/f/mykqpqeq", {
         method: "POST",
         body: form,
         headers: {

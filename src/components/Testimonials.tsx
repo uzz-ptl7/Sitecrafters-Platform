@@ -118,7 +118,7 @@ const Testimonials = () => {
         formspreeData.append(k, String(v || ""))
       );
 
-      await fetch("https://formspree.io/f/xblyvzon", {
+      await fetch("https://formspree.io/f/xnjkzkpg", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: formspreeData,

@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowRight, Code, Palette, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import instagramicon from "../assets/socialmedia/instagram.png";
 import gmailicon from "../assets/socialmedia/gmail.png";
 import whatsappicon from "../assets/socialmedia/whatsapp.png";
@@ -74,14 +75,15 @@ const Hero = () => {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
 
               {/* Primary CTA - 65% */}
-              <Button
-                onClick={scrollToContact}
-                size="lg"
-                className="group w-full sm:w-[60%] border-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-fuchsia-500 px-6 py-3 text-base text-white duration-500 hover:from-cyan-300 hover:to-purple-400 hover:text-black sm:text-lg"
-              >
-                Start Your Project
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2 sm:h-5 sm:w-5" />
-              </Button>
+              <Link to="/auth/signup">
+                <Button
+                  size="lg"
+                  className="group w-full sm:w-[60%] border-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-fuchsia-500 px-6 py-3 text-base text-white duration-500 hover:from-cyan-300 hover:to-purple-400 hover:text-black sm:text-lg"
+                >
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2 sm:h-5 sm:w-5" />
+                </Button>
+              </Link>
 
               {/* Secondary CTA - 35% */}
               <Button
